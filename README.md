@@ -4,6 +4,12 @@ Very small dependency injection manager which doesn't use the common pattern
 of injecting the dependencies via constructor and which also does not require
 a factory when instantiating a class annotated with `Service`.
 
+## Installation
+
+```
+npm install --save tsdim
+```
+
 ## Usage
 
 ### Simple, direct injection
@@ -94,6 +100,8 @@ Injector.provide({provide: ServiceA, useFactory: FactoryA, dependencies: [{...co
 const b = new ServiceB();
 console.log('b.a._config is instantiated and of type MyConfiguration', b.a['_config'] instanceof MyConfiguration); // true
 ```
+
+If you want to see the rational behind it, then read on.
 
 ## Problems with DI using constructors
 
