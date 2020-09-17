@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "outDir": "./dist/"
+  },
+  "include": ["ts/**/*.ts"],
+  "exclude": ["ts/**/*.spec.ts", "ts/main.test.ts"]
+}
