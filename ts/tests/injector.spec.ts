@@ -54,6 +54,22 @@ class ServiceJ {
     constructor(public b: ServiceB) {}
 }
 
+@Service()
+abstract class ServiceK {
+    @Autowired(ServiceB) public b: ServiceB;
+    constructor() {
+        console.log('i am service k');
+    }
+}
+
+@Service()
+class ServiceL extends ServiceK {
+    constructor() {
+        super();
+        console.log('i am service L');
+    }
+}
+
 function FactoryJ(b: ServiceB): ServiceJ {
     return new ServiceJ(b);
 }
@@ -66,6 +82,7 @@ const A = 'abc';
     {provide: 'service-j', useClass: ServiceJ},
 ])
 export class InjectorTestCase {
+    @Autowired(ServiceL) public l: ServiceL;
     @Autowired(ServiceI) public i: ServiceH;
     @Autowired(ServiceB) public b: ServiceB;
     @Autowired('my-service') public c: ServiceC;
@@ -158,5 +175,17 @@ export class InjectorTestCase {
         Injector.provide({provide: 'A', useValue: A});
         a = Injector.resolve('A');
         expect(a).toEqual('abc');
+    }
+
+    @Test('testing abstract service')
+    public test9() {
+        expect(this.l instanceof ServiceL).toBeTrue();
+        this._assertB(this.l.b);
+    }
+
+    @Test('testing direct resolve')
+    public test10() {
+        const b = Injector.resolve(ServiceB);
+        this._assertB(b);
     }
 }

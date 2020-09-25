@@ -1,6 +1,6 @@
 {
   "name": "tsdim",
-  "version": "0.0.2",
+  "version": "0.0.7",
   "description": "Simple dependency injection manager without use of constructor and without the need of factories",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,9 +9,9 @@
     "build": "tsc --diagnostics"
   },
   "author": "Cosmin Popescu",
+  "homepage": "https://github.com/cosminadrianpopescu/tsdim",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@abraham/reflection": "^0.7.0",
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {

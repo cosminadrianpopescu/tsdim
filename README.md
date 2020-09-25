@@ -114,17 +114,20 @@ Injecting dependencies via constructor is very bad for a few reasons:
   container via the constructor, we always need a factory. This is why
   `Angular` is using the `ComponentFactoryResolver` service. Because in
   `Angular` components need to be instantiated and destroyed per request (they
-  are not singleton) and a Factory is needed to get an instance of components.
+  are not singleton) and a Factory is needed to get an instance of a given
+  component.
 
 And I know that we are being told that we should not instantiate classes with
 new or that we try to avoid extending classes. But there are lots of valid use
 cases to instantiate classes manually (see the mentioned case of `Angular`
 components) or to extend services or other things otherwise provided by a
-dependency injection container. I've seen lots of code going to some lengths
-trying to avoid extending something because then they would need to provide
-the private internal dependencies of the service they were trying to extend.
-I've also seen other code simply giving up and just aquiring the required
-service and passing it to the super class. 
+dependency injection container.
+
+I've seen lots of code going to some out of the way trying to avoid extending
+something because then they would need to provide the private internal
+dependencies of the service they were trying to extend.  I've also seen other
+code simply giving up and just aquiring the required service and passing it to
+the super class. 
 
 ## Examples of bad practice
 
@@ -134,7 +137,7 @@ also using another service to get the metadata of the videos.
 
 And then, depending on some factors (like user input, part in the application
 where we are rendering the player etc.) one of those backends will be used.
-This is a classical case of defining an abstract class and then defining it
+This is a classical case of declaring an abstract class and then defining it
 afterwards. How is this model normally implemented, avoiding extension?
 
 ```
@@ -205,7 +208,7 @@ export class Consumer {
 ```
 
 Notice that if I would know from the beginning of the application that only
-one backend is choose, then this is another scenario, and in this case I can
+one backend is choosen, then this is another scenario, and in this case I can
 just inject that specific backend based on some kind of token, and the
 implementation would be much simpler. But in the case I need to choose the
 backend at run time, depending on user preferences, then we have to go to a
